@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-ink-50 text-ink-900 dark:bg-ink-950 dark:text-ink-100;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* RTL support */
+[dir='rtl'] {
+  font-family: 'Cairo', system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-ink-300 dark:bg-ink-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-ink-400 dark:bg-ink-600;
+}
+
+/* Focus ring */
+*:focus-visible {
+  @apply outline-none ring-2 ring-brand-500/60 ring-offset-2 ring-offset-white dark:ring-offset-ink-950;
+}
+
+/* Utility component classes */
+@layer components {
+  .glass {
+    @apply bg-white/80 dark:bg-ink-900/80 backdrop-blur-xl;
+  @apply border border-ink-200/80 dark:border-ink-800/80;
+  @apply shadow-card dark:shadow-card-dark;
+  @apply rounded-2xl;
+  @apply transition-colors duration-200;
+  @apply transition-shadow duration-200;
+  @apply transition-transform duration-200;
+  }
+  .glass-hover {
+    @apply hover:shadow-glow hover:border-brand-400/60 dark:hover:border-brand-500/40;
+    @apply hover:-translate-y-0.5;
+  }
+  .input-base {
+    @apply w-full rounded-xl border border-ink-200 dark:border-ink-700
+           bg-white dark:bg-ink-900
+           px-3.5 py-2.5 text-sm
+           text-ink-900 dark:text-ink-100
+           placeholder:text-ink-400 dark:placeholder:text-ink-500
+           transition-colors duration-150
+           focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium
+           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-brand-500/40;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800
+           shadow-sm shadow-brand-600/20;
+  }
+  .btn-secondary {
+    @apply btn bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-200
+           hover:bg-ink-200 dark:hover:bg-ink-700;
+  }
+  .btn-ghost {
+    @apply btn text-ink-600 dark:text-ink-300 hover:bg-ink-100 dark:hover:bg-ink-800;
+  }
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700 active:bg-red-800;
+  }
+  .label-base {
+    @apply block text-xs font-medium text-ink-600 dark:text-ink-400 mb-1.5;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  background: linear-gradient(90deg, rgba(148,163,184,0.1) 25%, rgba(148,163,184,0.2) 37%, rgba(148,163,184,0.1) 63%);
+  background-size: 1000px 100%;
+  @apply animate-shimmer rounded-md;
+}
